@@ -15,42 +15,39 @@
 	<h1>VFL to CCSS viewer</h1>
 	<h3>Visualize the CCSS generated from VFL expressions.</h3>
 
-	<textarea id="vflin" rows="10" cols="50" placeholder="Type your VFL here"></textarea>
+	<textarea id="vflin" rows="10" cols="50" placeholder="Type your VFL here" ></textarea>
 	<textarea id="ccssout" rows="10" cols="50" placeholder="Compiled CCSS"></textarea>
 	<button id="compile" onclick="parseVfltoCcss()">Compile to CCSS</button>
+	<label></label>
 
 	<style type="text/gss">
 
+		h1 {
+			left: == ($ #vflin)[left];
+			size: == &[intrinsic-size];
+		}
 
-		h1[left] == #vflin[left];
-		h3[left] == h1[left];
-
-		h1[size] == h1[intrinsic-size];
-		h3[size] == h3[intrinsic-size];
-
-		@v (h1)-10-(h3)-35-(#vflin);
+		h3 {
+			left: == ($ h1)[left];
+			size: == &[intrinsic-size];
+		}
 
 		textarea {
 			center-y: == ::window[center-y];
-			height: == ::window[height] / 3;		
+			height: == ::window[height] / 2;		
 		}
 
-		#compile {
-			width: == &[intrinsic-width];
-		}
+		#compile[width] == #compile[intrinsic-width];
 
-		[textareagap] == 50;
-		
+		[textareagap] == 50;		
 		@h |-(textarea)-...-| in(::window) gap([textareagap]) {
-			&[width] == ^[test];
+			&[width] == ^[textareawidth];
 		};
 
+		@v (h1)-10-(h3)-35-(#vflin);
 		@v (#ccssout)-(#compile) gap(20);
 		@h (#compile)| in(#vflin);
 
-		@h |-(.box)-| in(::window) { 
-			&[width] == [somevar]; 
-		}
 	</style>
 
 	<script src="vfl-compiler-bundle.js"></script>
@@ -66,10 +63,17 @@
 		{
 			var inputVfl = document.getElementById('vflin').value;
 			console.log(inputVfl);
-			var ccss = VFL.parse(inputVfl);
 
-			var outputccss = document.getElementById('ccssout');
-			outputccss.value = ccss.statements.join(";\n") + ";";
+			try {
+				var ccss = VFL.parse(inputVfl);
+				var outputccss = document.getElementById('ccssout');
+				outputccss.value = ccss.statements.join(";\n") + ";";
+			}
+			catch (e)
+			{
+				console.log(e);
+				 document.getElementById('ccssout').value = e;
+			}			
 		}
 
 
