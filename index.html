@@ -4,13 +4,13 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-	
-	<style type="text/css"> 
-     	html:not(.gss-ready) { opacity: 0; } 
+
+	<style type="text/css">
+     	html:not(.gss-ready) { opacity: 0; }
 	</style>
-	<noscript> 
-	  <style type="text/css"> html:not(.gss-ready) { opacity: 1; } 
-	  </style> 
+	<noscript>
+	  <style type="text/css"> html:not(.gss-ready) { opacity: 1; }
+	  </style>
 	</noscript>
 
 	<h1>VFL to CCSS viewer</h1>
@@ -34,12 +34,12 @@
 
 		textarea {
 			center-y: == ::window[center-y];
-			height: == ::window[height] / 2;		
+			height: == ::window[height] / 2;
 		}
 
 		#compile[width] == #compile[intrinsic-width];
 
-		[textareagap] == 50;		
+		[textareagap] == 50;
 		@h |-(textarea)-...-| in(::window) gap([textareagap]) {
 			&[width] == ^[textareawidth];
 		};
@@ -51,7 +51,7 @@
 	</style>
 
 	<script src="vfl-compiler-bundle.js"></script>
-	<script src="https://rawgit.com/gss/engine/visible/dist/gss.js"></script>
+	<script src="https://rawgit.com/gss/engine/master/dist/gss.js"></script>
 
 	<script type="text/javascript">
   		window.engine = new GSS(document);
@@ -73,7 +73,7 @@
 			{
 				console.log(e);
 				 document.getElementById('ccssout').value = e;
-			}			
+			}
 		}
 
 
